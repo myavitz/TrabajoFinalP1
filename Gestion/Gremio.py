@@ -8,11 +8,24 @@ class Gremio():
         self.__misiones = {}
 
 
-    def registrar_aventurero(self, nombre: str, clase: str, id: int):
+    
+    @property
+    def aventureros(self):
+        return self.__aventureros
+    
+    @property
+    def misiones(self):
+        return self.__misiones
+    
+    
+    def registrar_aventurero(self, nombre: str, clase: str, id: int, puntos_habilidad: int, exp: int, dinero:float, fuerza:int =None, mana: int = None, mascota: object = None):
         if clase == "Guerrero":
-            aventurero = Guerrero(nombre, id, randint(0, 100), 0, 0, randint(1,100))
-            self.__aventureros(aventurero.nombre) = aventurero
-        if clase == "Ranger":
-            pass
+            self.aventureros[id] = Guerrero(nombre, id, puntos_habilidad, exp, dinero, fuerza)
+        
         if clase == "Mago":
-            pass
+            self.aventureros[id] = Mago(nombre, id, puntos_habilidad, exp, dinero, mana)
+    
+        
+        if clase == "Ranger":
+            self.aventureros[id] = Ranger(nombre, id, puntos_habilidad, exp, dinero, mascota)
+        
