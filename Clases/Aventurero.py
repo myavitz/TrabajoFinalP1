@@ -6,7 +6,7 @@ class Aventurero(ABC):
         self.__ID = ID
         self.__puntos_habilidad = puntos_habilidad
         self.__exp = exp
-        self.__dinero = dinero
+        self.__dinero = round(dinero, 2)
     
     @property
     def nombre(self):
