@@ -42,6 +42,8 @@ def opcion1():
     time.sleep(1)
     nombre = pedir_entrada("Ingrese el nombre: ")
     time.sleep(0.5)
+    id = pedir_entrada("Ingrese un id único: ", tipo_dato = "int")
+    time.sleep(0.5)
     clase = pedir_entrada("Ingrese la clase(Guerrero, Mago o Ranger): ")
     time.sleep(0.5)
     puntos_habilidad = pedir_entrada("Ingrese los puntos de habilidad (1-100): ", tipo_dato="int", rango=(1, 100))
@@ -55,14 +57,14 @@ def opcion1():
         fuerza = pedir_entrada("Ingrese la fuerza (1-100): ", tipo_dato="int", rango=(1, 100))
         print(f"Registrando a {nombre} como Guerrero...")
         time.sleep(1)
-        gremio.registrar_aventurero(nombre, clase, puntos_habilidad, exp, dinero, fuerza)
+        gremio.registrar_aventurero(nombre, id, clase, puntos_habilidad, exp, dinero, fuerza)
         print(f'¡Aventurero {nombre} registrado con éxito!')
     elif clase.upper() == "MAGO":
         time.sleep(0.5)
         mana = pedir_entrada("Ingrese el valor de maná (1-1000): ", tipo_dato="int", rango=(1, 1000))
         print(f"Registrando a {nombre} como Mago...")
         time.sleep(1)
-        gremio.registrar_aventurero(nombre, clase, puntos_habilidad, exp, dinero, None, mana)
+        gremio.registrar_aventurero(nombre, id, clase, puntos_habilidad, exp, dinero, None, mana)
         print(f'¡Aventurero {nombre} registrado con éxito!')
     elif clase.upper() == "RANGER":
         time.sleep(0.5)
@@ -75,11 +77,11 @@ def opcion1():
             mascota = Mascota(nombre_mascota, habilidad_mascota)
             print(f"Registrando a {nombre} como Ranger...")
             time.sleep(1)
-            gremio.registrar_aventurero(nombre, clase, puntos_habilidad, exp, dinero, mascota)
+            gremio.registrar_aventurero(nombre, id, clase, puntos_habilidad, exp, dinero, mascota)
         else:
             print("Registrando Aventurero como Ranger sin mascota...")
             time.sleep(1)
-            gremio.registrar_aventurero(nombre, clase, puntos_habilidad, exp, dinero, None)
+            gremio.registrar_aventurero(nombre, id, clase, puntos_habilidad, exp, dinero, None)
             print(f'¡Aventurero {nombre} registrado con éxito!')
 
 def opcion2():

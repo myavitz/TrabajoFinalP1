@@ -2,8 +2,8 @@ from .Aventurero import Aventurero
 from .Mascota import Mascota
 
 class Ranger(Aventurero):
-    def __init__(self, nombre, puntos_habilidad, exp, dinero, mascota = None):
-        super().__init__(nombre, puntos_habilidad, exp, dinero)    
+    def __init__(self, nombre, id, puntos_habilidad, exp, dinero, mascota = None):
+        super().__init__(nombre, id, puntos_habilidad, exp, dinero)    
         self.__mascota = mascota
     
     
