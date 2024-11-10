@@ -1,12 +1,17 @@
 from abc import ABC, abstractmethod
 
 class Aventurero(ABC):
-    def __init__(self, nombre:str, id:int, puntos_habilidad:int, exp:int, dinero:float):
+    
+    __ultimo_id = 1
+    
+    def __init__(self, nombre:str, puntos_habilidad:int, exp:int, dinero:float):
         self.__nombre = nombre
-        self.__id = id
+        self.__id = self.__ultimo_id
+        Aventurero.__ultimo_id = Aventurero.__ultimo_id+1
         self.__puntos_habilidad = puntos_habilidad
         self.__exp = exp
         self.__dinero = round(dinero, 2)
+    
     
     @property
     def nombre(self):

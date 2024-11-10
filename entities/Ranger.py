@@ -1,10 +1,10 @@
-from Clases.Aventurero import Aventurero
-from Clases.Mascota import Mascota
+from .Aventurero import Aventurero
+from .Mascota import Mascota
 
 class Ranger(Aventurero):
-    def __init__(self, nombre, id, puntos_habilidad, exp, dinero, mascota = None):
-        super().__init__(nombre, id, puntos_habilidad, exp, dinero)    
-        self.__mascota = mascota if isinstance(mascota, Mascota) else None #revisar el tema de la mascota (como definirlo bien)
+    def __init__(self, nombre, puntos_habilidad, exp, dinero, mascota = None):
+        super().__init__(nombre, puntos_habilidad, exp, dinero)    
+        self.__mascota = mascota
     
     
     @property
