@@ -173,14 +173,59 @@ def main():
 
 if __name__ == "__main__":
 
-    def pruebas():  
+    def pruebas():
+        #Aventureros y Mascotas
         gremio.registrar_aventurero("Marcelo", 12, "Guerrero", 45, 888, 23, 54)
         gremio.registrar_aventurero("Marcela", 22,"Mago", 62, 455, 2665, None, 544)
         mascota1 = Mascota("Winnie", 35)
         gremio.registrar_aventurero("Jhonnie", 34,"Ranger", 47, 211, 9665, None, None, mascota1)
+        gremio.registrar_aventurero("Lucia", 28, "Mago", 30, 320, 1350, 12, None)
+        gremio.registrar_aventurero("Gustavo", 19, "Guerrero", 50, 500, 740, 25, 30)
+        gremio.registrar_aventurero("Diego", 25, "Mago", 40, 150, 4700, None, None)
+        gremio.registrar_aventurero("Sofia", 30, "Ranger", 38, 900, 1230, 45, 78, None)
+        mascota2 = Mascota("Sombra", 50)
+        gremio.registrar_aventurero("Carlos", 33, "Ranger", 55, 270, 890, None, None, mascota2)
+        gremio.registrar_aventurero("Ana", 27, "Guerrero", 70, 123, 4560, 15, 32)
+        gremio.registrar_aventurero("Luis", 20, "Mago", 34, 750, 3100, None, None)
+        gremio.registrar_aventurero("Elena", 24, "Guerrero", 65, 520, 2100, 10, 15)
+        mascota3 = Mascota("Relámpago", 40)
+        gremio.registrar_aventurero("Miguel", 29, "Ranger", 50, 580, 900, None, None, mascota3)
+        gremio.registrar_aventurero("Patricia", 31, "Mago", 55, 450, 2100, 5, None)
+        gremio.registrar_aventurero("Fernando", 26, "Guerrero", 60, 610, 950, 18, 20)
+        gremio.registrar_aventurero("Alicia", 33, "Ranger", 44, 620, 2700, None, None)  
+        mascota4 = Mascota("Neblina", 20)
+        gremio.registrar_aventurero("Victor", 28, "Ranger", 41, 320, 740, None, None, mascota4)
+        gremio.registrar_aventurero("Gabriel", 22, "Guerrero", 57, 700, 810, 22, 35)
+        gremio.registrar_aventurero("Monica", 30, "Mago", 44, 560, 2500, None, None)
+        gremio.registrar_aventurero("Daniel", 35, "Ranger", 60, 1100, 3000, 55, 85)
+        mascota5 = Mascota("Ares", 25)
+        gremio.registrar_aventurero("Hugo", 34, "Ranger", 49, 930, 4000, None, None, mascota5)
 
+        #Misiones Individuales
         gremio.registrar_mision("Mondongo", True, 3, 500)
+        gremio.registrar_mision("El Bosque Encantado", True, 2, 1500)
+        gremio.registrar_mision("Misión de Rescate", True, 4, 2100)
+        gremio.registrar_mision("Protección de Aldea", True, 3, 1250)
+        gremio.registrar_mision("Patrulla de Bosque", True, 2, 1100)
+        gremio.registrar_mision("Escolta de Caravana", True, 5, 1600)
+        gremio.registrar_mision("Expedición al Valle", True, 4, 1800)
+        gremio.registrar_mision("Misión de Asalto", True, 3, 1400)
+        gremio.registrar_mision("Investigación de Ruinas", True, 5, 2500)
+        gremio.registrar_mision("Defensa de Fortaleza", True, 3, 1350)
+        gremio.registrar_mision("Caza de Bestias", True, 4, 1900)
+
+        #Misiones Grupales
         gremio.registrar_mision("Ojo de Halcon", False, 4, 2000, 3)
+        gremio.registrar_mision("Montaña de la Muerte", False, 5, 4000, 2)
+        gremio.registrar_mision("Batalla en el Castillo", False, 4, 2300, 3)
+        gremio.registrar_mision("Río de las Sombras", False, 2, 1200, 5)
+        gremio.registrar_mision("Templo Perdido", False, 3, 1550, 2)
+        gremio.registrar_mision("Isla Fantasma", False, 5, 3000, 4)
+        gremio.registrar_mision("Montaña de los Lamentos", False, 4, 1700, 3)
+        gremio.registrar_mision("La Cueva Maldita", False, 3, 1450, 5)
+        gremio.registrar_mision("Campo de los Caídos", False, 2, 1000, 2)
+        gremio.registrar_mision("Pico del Terror", False, 5, 2750, 4)
+        gremio.registrar_mision("Fortaleza Oculta", False, 4, 2200, 3)
     
         return
     
