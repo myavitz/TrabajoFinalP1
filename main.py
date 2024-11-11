@@ -1,4 +1,4 @@
-from entities import Aventurero, Guerrero, Mago, Ranger, Mascota, Mision, Mision_Grupal, Mision_Indivudual, Gremio
+from entities import Aventurero, Guerrero, Mago, Ranger, Mascota, Mision, MisionGrupal, MisionIndividual, Gremio
 from utils import pedir_entrada, es_convertible_a_float
 import time
 
@@ -109,7 +109,36 @@ def opcion2():
         print("Misión grupal registrada con éxito.")
 
 def opcion3():
-    pass
+    print("\nCargando...")
+    time.sleep(1)
+    print ("Seleccione el tipo de mision:")
+    mision = pedir_entrada("1.Mision Individual\n2.Mision Grupal\n ", tipo_dato = "int", rango = (1,2))
+    if mision == 1:
+        for key, value in gremio.misiones.items():
+            if isinstance(value, MisionIndividual):
+                print(f"Las misiones disponibles son: \n{value}\n")
+        mision_elegida = pedir_entrada("Elija la mision a completar: ")
+        for key, value in gremio.misiones.items():
+            if isinstance(value, MisionIndividual):
+                if mision_elegida.upper() == value.nombre.upper():
+                    print (f"La mision elegida es: {mision_elegida}.")
+        print("Elija un aventurero para realizar la mision (elija por ID): ")
+        for key, value in gremio.aventureros.items():
+            if isinstance(value, (Guerrero, Mago, Ranger)):
+                print(f"\n{value}")
+        aventurero_elegido = pedir_entrada("",tipo_dato = "int")
+        for key, value in gremio.aventureros.items():
+            if value.id == aventurero_elegido:
+                print(f"El aventurero elegido es: {gremio.aventureros[aventurero_elegido]}")
+                print("Intentando Mision")
+                time.sleep(1)
+
+
+    elif mision == 2:
+        for key, value in gremio.misiones.items():
+            if isinstance(value, MisionGrupal):
+                print(f"Las misiones disponibles son: \n{value}\n")
+    
 
 def opcion4():
     b = True
@@ -143,4 +172,17 @@ def main():
         print("Saliendo del programa.")
 
 if __name__ == "__main__":
-    main()        
+
+    def pruebas():  
+        gremio.registrar_aventurero("Marcelo", 12, "Guerrero", 45, 888, 23, 54)
+        gremio.registrar_aventurero("Marcela", 22,"Mago", 62, 455, 2665, None, 544)
+        mascota1 = Mascota("Winnie", 35)
+        gremio.registrar_aventurero("Jhonnie", 34,"Ranger", 47, 211, 9665, None, None, mascota1)
+
+        gremio.registrar_mision("Mondongo", True, 3, 500)
+        gremio.registrar_mision("Ojo de Halcon", False, 4, 2000, 3)
+    
+        return
+    
+    pruebas()
+    main()      

@@ -23,3 +23,12 @@ class MisionGrupal(Mision):
             self.asignar_avenureros(aventurero)
             print(f"Aventurero {aventurero} asignado a la misión.")
     
+    def asignar_avenurero(self, aventurero):
+        pass
+
+    def __eq__(self, value):
+        if value.miembros_minimos != None:
+            return True
+        
+    def __repr__(self):
+        return (f"Nombre: {self.nombre}, Rango: {self.rango}, Recompensa: {self.recompensa}, Miembros Minimos: {self.miembros_minimos}, Completado: {self.completado}")

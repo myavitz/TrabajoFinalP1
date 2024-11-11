@@ -21,4 +21,10 @@ class MisionIndividual(Mision):
             print("La misión ya tiene un aventurero asignado.")
     
     def __repr__(self):
-        return f'Misión: {self.nombre}, Rango: {self.rango}, Recompensa: {self.recompensa}'
+        return f'Misión: {self.nombre}, Rango: {self.rango}, Recompensa: {self.recompensa}, Completada: {self.completado}'
+    
+    def __eq__(self, value):
+        if hasattr(self, "aventurero_asignado") and hasattr(value, "aventurero_asignado"):
+            if self.aventurero_asignado != value.aventurero_asignado:
+                return False
+        return True
