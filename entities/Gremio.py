@@ -5,8 +5,6 @@ class Gremio():
         self.__aventureros = {}
         self.__misiones = {}
 
-
-    
     @property
     def aventureros(self):
         return self.__aventureros
@@ -29,7 +27,8 @@ class Gremio():
         if clase.upper() == "RANGER":
             rangos = Ranger(nombre, id, puntos_habilidad, exp, dinero, mascota)
             self.aventureros[rangos.id] = rangos
-        
+
+        self.__aventureros = dict(sorted(self.aventureros.items()))
 
     def registrar_mision(self, nombre:str, tipo_de_mision: bool, rango:int, recompensa:float, miembros_minimos= None):
         if tipo_de_mision:
@@ -38,3 +37,12 @@ class Gremio():
         else:
             mision = MisionGrupal(nombre, rango, recompensa, miembros_minimos)
             self.misiones[mision.nombre] = mision
+
+    def verificar_id(self, id: int):
+        for key, value in self.aventureros.items():
+            if value.id == id:
+                return True
+        return False
+    
+    def realizar_mision(self, aventurero:object, mision:object):
+        pass

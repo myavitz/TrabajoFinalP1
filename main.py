@@ -42,7 +42,17 @@ def opcion1():
     time.sleep(1)
     nombre = pedir_entrada("Ingrese el nombre: ")
     time.sleep(0.5)
-    id = pedir_entrada("Ingrese un id único: ", tipo_dato = "int")
+    c=True
+    while c:
+        try: 
+            id = pedir_entrada("Ingrese un id único: ", tipo_dato = "int")
+            if  gremio.verificar_id(id):
+                raise ValueError("Error, ese id ya se encuentra registrado.")
+            else:
+                c=False
+        except ValueError as e:
+            print(f"Error: {e}")
+            time.sleep(0.3)
     time.sleep(0.5)
     clase = pedir_entrada("Ingrese la clase(Guerrero, Mago o Ranger): ")
     time.sleep(0.5)
@@ -59,6 +69,7 @@ def opcion1():
         time.sleep(1)
         gremio.registrar_aventurero(nombre, id, clase, puntos_habilidad, exp, dinero, fuerza)
         print(f'¡Aventurero {nombre} registrado con éxito!')
+        time.sleep(0.8)
     elif clase.upper() == "MAGO":
         time.sleep(0.5)
         mana = pedir_entrada("Ingrese el valor de maná (1-1000): ", tipo_dato="int", rango=(1, 1000))
@@ -66,6 +77,7 @@ def opcion1():
         time.sleep(1)
         gremio.registrar_aventurero(nombre, id, clase, puntos_habilidad, exp, dinero, None, mana)
         print(f'¡Aventurero {nombre} registrado con éxito!')
+        time.sleep(0.8)
     elif clase.upper() == "RANGER":
         time.sleep(0.5)
         yn = pedir_entrada("El ranger tiene mascota? (y/n): ")
@@ -78,11 +90,14 @@ def opcion1():
             print(f"Registrando a {nombre} como Ranger...")
             time.sleep(1)
             gremio.registrar_aventurero(nombre, id, clase, puntos_habilidad, exp, dinero, mascota)
+            print(f'¡Aventurero {nombre} registrado con éxito!')
+            time.sleep(0.8)
         else:
             print("Registrando Aventurero como Ranger sin mascota...")
             time.sleep(1)
             gremio.registrar_aventurero(nombre, id, clase, puntos_habilidad, exp, dinero, None)
             print(f'¡Aventurero {nombre} registrado con éxito!')
+            time.sleep(0.8)
 
 def opcion2():
     print("\nCargando...")
@@ -132,7 +147,7 @@ def opcion3():
                 print(f"El aventurero elegido es: {gremio.aventureros[aventurero_elegido]}")
                 print("Intentando Mision")
                 time.sleep(1)
-
+                
 
     elif mision == 2:
         for key, value in gremio.misiones.items():
@@ -153,7 +168,8 @@ def opcion4():
 
 
         if opcion == 1:
-            print(gremio.aventureros)
+            for llave, aventurero in gremio.aventureros.items():
+                print(f"ID: {llave}-{aventurero}")
         elif opcion == 2:
             pass
         elif opcion == 3:
