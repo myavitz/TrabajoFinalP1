@@ -10,15 +10,26 @@ class MisionIndividual(Mision):
         return self.__aventurero_asignado
     
     @aventurero_asignado.setter
-    def aventurero_asignado(self, aventurero):
-        self.__aventurero_asignado = aventurero
+    def aventurero_asignado(self, value):
+        self.__aventurero_asignado = value
 
-    def asignar_avenurero(self, aventurero):
-        if self.aventurero is None:
-            self.aventurero = aventurero
+    def asignar_aventurero(self, aventurero):
+        if self.aventurero_asignado is None:
+            self.aventurero_asignado = aventurero
             print(f'Aventurero {aventurero} asignado a la misión "{self.nombre}".')
         else:
             print("La misión ya tiene un aventurero asignado.")
+    
+    def realizar_mision(self):
+        self.aventurero_asignado.calcular_rango()
+        rango_aventurero = self.aventurero_asignado.rango
+        if rango_aventurero >= self.rango:
+            print("Misión Realizada con Éxito!")
+            self.completado = True
+        else:
+            self.aventurero_asignado = None
+            raise ValueError("El rango del aventurero es insuficiente para realizar la misión.")
+    
     
     def __repr__(self):
         return f'Misión: {self.nombre}, Rango: {self.rango}, Recompensa: {self.recompensa}, Completada: {self.completado}'

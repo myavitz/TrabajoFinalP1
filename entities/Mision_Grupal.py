@@ -23,7 +23,10 @@ class MisionGrupal(Mision):
             self.asignar_avenureros(aventurero)
             print(f"Aventurero {aventurero} asignado a la misión.")
     
-    def asignar_avenurero(self, aventurero):
+    def asignar_aventurero(self, aventurero):
+        pass
+    
+    def realizar_mision(self, algo: list):
         pass
 
     def __eq__(self, value):

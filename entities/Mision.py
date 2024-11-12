@@ -24,9 +24,13 @@ class Mision(ABC):
         return self.__completado
 
     @completado.setter
-    def completado(self):
-        self.completado = True
+    def completado(self, valor):
+        self.__completado = valor
     
     @abstractmethod
-    def asignar_avenurero(self, aventurero):
+    def asignar_aventurero(self, aventurero):
+        pass
+    
+    @abstractmethod
+    def realizar_mision(self):
         pass

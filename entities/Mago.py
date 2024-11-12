@@ -4,12 +4,34 @@ class Mago(Aventurero):
     def __init__(self, nombre, id, puntos_habilidad, exp, dinero, mana:int):
         super().__init__(nombre, id, puntos_habilidad, exp, dinero)
         self.__mana = mana
+        self.__rango = 0
+        self.__puntos_habilidad = puntos_habilidad
+    
+    @property
+    def rango(self):
+        return self.__rango
     
     @property
     def mana(self):
         return self.__mana
     
-    
+    @rango.setter
+    def rango(self, valor):
+        self.__rango = valor
+
+    def calcular_rango(self):
+        habilidadTotal = self.calcular_habilidad_total()
+        if  habilidadTotal >= 1 and habilidadTotal <=20:
+            self.rango = 1
+        elif habilidadTotal >= 21 and habilidadTotal <=40:
+            self.rango = 2
+        elif habilidadTotal >= 41 and habilidadTotal <=60:
+            self.rango = 3
+        elif habilidadTotal >= 61 and habilidadTotal <=80:
+            self.rango = 4
+        else:
+            self.rango = 5
+
     def calcular_habilidad_total(self):
         return self.__puntos_habilidad + self.__mana/10
     

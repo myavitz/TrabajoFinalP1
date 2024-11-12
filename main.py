@@ -127,7 +127,7 @@ def opcion3():
     print("\nCargando...")
     time.sleep(1)
     print ("Seleccione el tipo de mision:")
-    mision = pedir_entrada("1.Mision Individual\n2.Mision Grupal\n ", tipo_dato = "int", rango = (1,2))
+    mision = pedir_entrada("1.Mision Individual\n2.Mision Grupal\n:  ", tipo_dato = "int", rango = (1,2))
     if mision == 1:
         for key, value in gremio.misiones.items():
             if isinstance(value, MisionIndividual):
@@ -141,13 +141,18 @@ def opcion3():
         for key, value in gremio.aventureros.items():
             if isinstance(value, (Guerrero, Mago, Ranger)):
                 print(f"\n{value}")
-        aventurero_elegido = pedir_entrada("",tipo_dato = "int")
+        aventurero_elegido = pedir_entrada("Seleccione el id del aventurero deseado: ",tipo_dato = "int")
         for key, value in gremio.aventureros.items():
             if value.id == aventurero_elegido:
-                print(f"El aventurero elegido es: {gremio.aventureros[aventurero_elegido]}")
+                aventurero_para_mision = gremio.aventureros[aventurero_elegido]
+                print(f"El aventurero elegido es: {aventurero_para_mision}")
+                time.sleep(0.3)
                 print("Intentando Mision")
                 time.sleep(1)
-                
+                mision_a_realizar = gremio.misiones[mision_elegida]
+                mision_a_realizar.asignar_aventurero(aventurero_para_mision)
+                mision_a_realizar.realizar_mision()
+                time.sleep(0.5)
 
     elif mision == 2:
         for key, value in gremio.misiones.items():
@@ -197,12 +202,12 @@ if __name__ == "__main__":
         gremio.registrar_aventurero("Jhonnie", 34,"Ranger", 47, 211, 9665, None, None, mascota1)
         gremio.registrar_aventurero("Lucia", 28, "Mago", 30, 320, 1350, 12, None)
         gremio.registrar_aventurero("Gustavo", 19, "Guerrero", 50, 500, 740, 25, 30)
-        gremio.registrar_aventurero("Diego", 25, "Mago", 40, 150, 4700, None, None)
+        gremio.registrar_aventurero("Diego", 25, "Mago", 40, 150, 4700, None, 500)
         gremio.registrar_aventurero("Sofia", 30, "Ranger", 38, 900, 1230, 45, 78, None)
         mascota2 = Mascota("Sombra", 50)
         gremio.registrar_aventurero("Carlos", 33, "Ranger", 55, 270, 890, None, None, mascota2)
         gremio.registrar_aventurero("Ana", 27, "Guerrero", 70, 123, 4560, 15, 32)
-        gremio.registrar_aventurero("Luis", 20, "Mago", 34, 750, 3100, None, None)
+        gremio.registrar_aventurero("Luis", 20, "Mago", 34, 750, 3100, None, 420)
         gremio.registrar_aventurero("Elena", 24, "Guerrero", 65, 520, 2100, 10, 15)
         mascota3 = Mascota("Relámpago", 40)
         gremio.registrar_aventurero("Miguel", 29, "Ranger", 50, 580, 900, None, None, mascota3)
@@ -212,7 +217,7 @@ if __name__ == "__main__":
         mascota4 = Mascota("Neblina", 20)
         gremio.registrar_aventurero("Victor", 28, "Ranger", 41, 320, 740, None, None, mascota4)
         gremio.registrar_aventurero("Gabriel", 22, "Guerrero", 57, 700, 810, 22, 35)
-        gremio.registrar_aventurero("Monica", 30, "Mago", 44, 560, 2500, None, None)
+        gremio.registrar_aventurero("Monica", 30, "Mago", 44, 560, 2500, None, 600)
         gremio.registrar_aventurero("Daniel", 35, "Ranger", 60, 1100, 3000, 55, 85)
         mascota5 = Mascota("Ares", 25)
         gremio.registrar_aventurero("Hugo", 34, "Ranger", 49, 930, 4000, None, None, mascota5)

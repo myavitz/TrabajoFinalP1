@@ -43,6 +43,3 @@ class Gremio():
             if value.id == id:
                 return True
         return False
-    
-    def realizar_mision(self, aventurero:object, mision:object):
-        pass
