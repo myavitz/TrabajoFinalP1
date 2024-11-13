@@ -4,6 +4,6 @@ from .Mago import Mago
 from .Ranger import Ranger
 from .Mascota import Mascota
 from .Mision import Mision
-from .Mision_Indivudual import MisionIndividual
+from .Mision_Individual import MisionIndividual
 from .Mision_Grupal import MisionGrupal
 from .Gremio import Gremio

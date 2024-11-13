@@ -6,18 +6,36 @@ class Mago(Aventurero):
         self.__mana = mana
         self.__rango = 0
         self.__puntos_habilidad = puntos_habilidad
+        self.__exp = exp
+        self.__dinero = dinero
     
     @property
     def rango(self):
         return self.__rango
     
     @property
+    def dinero(self):
+        return self.__dinero
+    
+    @property
+    def exp(self):
+        return self.__exp
+    
+    @property
     def mana(self):
         return self.__mana
+    
+    @dinero.setter
+    def dinero(self, valor):
+        self.dinero = valor
     
     @rango.setter
     def rango(self, valor):
         self.__rango = valor
+
+    @exp.setter
+    def exp(self, valor):
+        self.__exp = valor
 
     def calcular_rango(self):
         habilidadTotal = self.calcular_habilidad_total()

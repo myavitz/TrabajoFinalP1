@@ -127,11 +127,12 @@ def opcion3():
     print("\nCargando...")
     time.sleep(1)
     print ("Seleccione el tipo de mision:")
-    mision = pedir_entrada("1.Mision Individual\n2.Mision Grupal\n:  ", tipo_dato = "int", rango = (1,2))
+    mision = pedir_entrada("1.Mision Individual\n2.Mision Grupal\nElegir 1 o 2: ", tipo_dato = "int", rango = (1,2))
     if mision == 1:
+        print("Las misiones disponibles son:")
         for key, value in gremio.misiones.items():
             if isinstance(value, MisionIndividual):
-                print(f"Las misiones disponibles son: \n{value}\n")
+                print(f"{value} ")
         mision_elegida = pedir_entrada("Elija la mision a completar: ")
         for key, value in gremio.misiones.items():
             if isinstance(value, MisionIndividual):
@@ -140,7 +141,7 @@ def opcion3():
         print("Elija un aventurero para realizar la mision (elija por ID): ")
         for key, value in gremio.aventureros.items():
             if isinstance(value, (Guerrero, Mago, Ranger)):
-                print(f"\n{value}")
+                print(f"{value}")
         aventurero_elegido = pedir_entrada("Seleccione el id del aventurero deseado: ",tipo_dato = "int")
         for key, value in gremio.aventureros.items():
             if value.id == aventurero_elegido:
@@ -155,9 +156,39 @@ def opcion3():
                 time.sleep(0.5)
 
     elif mision == 2:
+        print(f"Las misiones disponibles son: ")
         for key, value in gremio.misiones.items():
             if isinstance(value, MisionGrupal):
-                print(f"Las misiones disponibles son: \n{value}\n")
+                print(f"{value}")
+        mision_elegida = pedir_entrada("Elija la mision a completar: ")
+        for key, value in gremio.misiones.items():
+            if isinstance(value, MisionIndividual):
+                if mision_elegida.upper() == value.nombre.upper():
+                    print (f"La mision elegida es: {mision_elegida}.")
+        print("Elija un aventurero para realizar la mision (elija por ID): ")
+        for key, value in gremio.aventureros.items():
+            if isinstance(value, (Guerrero, Mago, Ranger)):
+                print(f"{value}")
+        mision_a_realizar = gremio.misiones[mision_elegida]
+        d = True
+        while d:
+            if len(mision_a_realizar.aventureros_asignados) < mision_a_realizar.miembros_minimos:
+                aventurero_elegido = pedir_entrada("Seleccione el id del aventurero deseado: ",tipo_dato = "int")
+                aventurero_para_mision = gremio.aventureros[aventurero_elegido]
+                mision_a_realizar.asignar_aventureros(aventurero_para_mision)
+
+            else:
+                d = False
+            
+            if len(mision_a_realizar.aventureros_asignados) < mision_a_realizar.miembros_minimos:
+                respuesta = pedir_entrada("¿Registrar otro aventurero? (S/N): ", tipo_dato="str").upper()
+            if respuesta.upper() != 'S':
+                d = False
+         
+        print("Intentando Mision")
+        time.sleep(1)
+        mision_a_realizar.realizar_mision()
+        time.sleep(0.5)
     
 
 def opcion4():

@@ -7,10 +7,16 @@ class Ranger(Aventurero):
         self.__mascota = mascota
         self.__puntos_habilidad = puntos_habilidad
         self.__rango = 0
+        self.__exp = exp
+        self.__dinero = dinero
     
     @property
     def rango(self):
         return self.__rango
+    
+    @property
+    def exp(self):
+        return self.__exp
 
     @property
     def puntos_habilidad(self):
@@ -20,9 +26,21 @@ class Ranger(Aventurero):
     def mascota(self):
         return self.__mascota
     
+    @property
+    def dinero(self):
+        return self.__dinero
+    
+    @exp.setter
+    def exp(self, valor):
+        self.__exp = valor
+
     @rango.setter
     def rango(self, valor):
         self.__rango = valor
+
+    @dinero.setter
+    def dinero(self, valor):
+        self.dinero = valor
     
     def calcular_rango(self):
         habilidadTotal = self.calcular_habilidad_total()

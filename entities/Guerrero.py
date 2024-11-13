@@ -6,10 +6,24 @@ class Guerrero(Aventurero):
         self.__fuerza = fuerza
         self.__rango = 0
         self.__puntos_habilidad = puntos_habilidad
+        self.__exp = exp
+        self.__dinero = dinero
+
+    @property
+    def dinero(self):
+        return self.__dinero
     
     @property
     def rango(self):
         return self.__rango
+    
+    @property
+    def exp(self):
+        return self.__exp
+    
+    @property
+    def fuerza(self):
+        return self.__fuerza
     
     @property
     def puntos_habilidad(self):
@@ -18,11 +32,15 @@ class Guerrero(Aventurero):
     @rango.setter
     def rango(self, valor):
         self.__rango = valor
-   
-    @property
-    def fuerza(self):
-        return self.__fuerza
-    
+
+    @exp.setter
+    def exp(self, valor):
+        self.__exp = valor
+
+    @dinero.setter
+    def dinero(self, valor):
+        self.__dinero = valor
+
     def calcular_rango(self):
         habilidadTotal = self.calcular_habilidad_total()
         if  habilidadTotal >= 1 and habilidadTotal <=20:
