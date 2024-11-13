@@ -62,8 +62,9 @@ class Guerrero(Aventurero):
             self.rango = 4
         else:
             self.rango = 5
+            
     def mision_completada(self):
-        self.misiones_completadas += 1
+        self.misiones_completadas = 1
     
     def calcular_habilidad_total(self):
         return self.__puntos_habilidad + (self.__fuerza)/2

@@ -16,8 +16,8 @@ class Ranger(Aventurero):
         return self.__misiones_completadas
     
     @misiones_completadas.setter
-    def misiones_completadas(self,):
-        self.__misiones_completadas += 1
+    def misiones_completadas(self, valor):
+        self.__misiones_completadas = self.misiones_completadas + valor
 
     @property
     def rango(self):
@@ -63,6 +63,9 @@ class Ranger(Aventurero):
             self.rango = 4
         else:
             self.rango = 5
+    
+    def mision_completada(self):
+        self.misiones_completadas = 1
     
     
     def calcular_habilidad_total(self):

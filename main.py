@@ -205,11 +205,14 @@ def opcion4():
 
 
         if opcion == 1:
-            for llave, aventurero in gremio.aventureros.items():
-                print(f"ID: {llave}-{aventurero}")
+            ordenado_exp = dict(sorted(gremio.aventureros.items(), key=lambda item: item[1].exp, reverse=True))
+            print(ordenado_exp)
         elif opcion == 2:
-            pass
+            ordenado_habilidad = dict(sorted(gremio.aventureros.items(), key=lambda item: item[1].puntos_habilidad, reverse=True))
+            print(ordenado_habilidad)
         elif opcion == 3:
+            ordenado_recompensa = dict(sorted(gremio.misiones.items(), key=lambda item: item[1].recompensa, reverse=True))
+            print(ordenado_recompensa)
             pass
         elif opcion == 4:
             b = False
