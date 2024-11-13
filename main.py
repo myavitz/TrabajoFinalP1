@@ -153,6 +153,7 @@ def opcion3():
                 mision_a_realizar = gremio.misiones[mision_elegida]
                 mision_a_realizar.asignar_aventurero(aventurero_para_mision)
                 mision_a_realizar.realizar_mision()
+                aventurero_para_mision.mision_completada()
                 time.sleep(0.5)
 
     elif mision == 2:

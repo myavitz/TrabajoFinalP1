@@ -9,7 +9,16 @@ class Ranger(Aventurero):
         self.__rango = 0
         self.__exp = exp
         self.__dinero = dinero
+        self.__misiones_completadas = 0
     
+    @property
+    def misiones_completadas(self):
+        return self.__misiones_completadas
+    
+    @misiones_completadas.setter
+    def misiones_completadas(self,):
+        self.__misiones_completadas += 1
+
     @property
     def rango(self):
         return self.__rango

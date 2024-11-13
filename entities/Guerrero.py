@@ -2,12 +2,21 @@ from .Aventurero import Aventurero
 
 class Guerrero(Aventurero):
     def __init__(self, nombre, id, puntos_habilidad, exp, dinero, fuerza:int):
-        super().__init__(nombre, id, puntos_habilidad, exp, dinero)
+        super().__init__(nombre, id, puntos_habilidad, exp, dinero,)
         self.__fuerza = fuerza
         self.__rango = 0
         self.__puntos_habilidad = puntos_habilidad
         self.__exp = exp
         self.__dinero = dinero
+        self.__misiones_completadas = 0
+        
+    @property
+    def misiones_completadas(self):
+        return self.__misiones_completadas
+    
+    @misiones_completadas.setter
+    def misiones_completadas(self, valor):
+        self.__misiones_completadas = self.misiones_completadas + valor
 
     @property
     def dinero(self):
@@ -53,10 +62,11 @@ class Guerrero(Aventurero):
             self.rango = 4
         else:
             self.rango = 5
-    
+    def mision_completada(self):
+        self.misiones_completadas += 1
     
     def calcular_habilidad_total(self):
         return self.__puntos_habilidad + (self.__fuerza)/2
     
     def __repr__(self):
-        return f'Aventurero: {self.nombre}, id: {self.id}, Puntos de Habilidad: {self.puntos_habilidad}, Exp: {self.exp}, Dinero: {self.dinero}, Fuerza: {self.fuerza}.'
+        return f'Aventurero: {self.nombre}, id: {self.id}, Misiones Completadas: {self.misiones_completadas}.'
