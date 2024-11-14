@@ -9,6 +9,12 @@ class Mago(Aventurero):
         self.__exp = exp
         self.__dinero = dinero
         self.__misiones_completadas = 0
+        self.__nombre = nombre
+
+    @property
+    def nombre(self):
+        return self.__nombre
+    
     
     @property
     def misiones_completadas(self):

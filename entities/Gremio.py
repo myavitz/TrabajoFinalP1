@@ -14,17 +14,17 @@ class Gremio():
         return self.__misiones
     
     
-    def registrar_aventurero(self, nombre: str, id: int, clase: str, puntos_habilidad: int, exp: int, dinero:float, fuerza:int =None, mana: int = None, mascota: object = None):
-        if clase.upper() == "GUERRERO":
+    def registrar_aventurero(self, nombre: str, id: int, clase: int, puntos_habilidad: int, exp: int, dinero:float, fuerza:int =None, mana: int = None, mascota: object = None):
+        if clase == 1:
             guerrero = Guerrero(nombre, id, puntos_habilidad, exp, dinero, fuerza)
             self.aventureros[guerrero.id] = guerrero
         
-        if clase.upper() == "MAGO":
+        if clase == 2:
             mago = Mago(nombre, id, puntos_habilidad, exp, dinero, mana)
             self.aventureros[mago.id] = mago
     
         
-        if clase.upper() == "RANGER":
+        if clase == 3:
             rangos = Ranger(nombre, id, puntos_habilidad, exp, dinero, mascota)
             self.aventureros[rangos.id] = rangos
 
