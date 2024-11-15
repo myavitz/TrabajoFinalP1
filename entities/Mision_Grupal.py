@@ -5,6 +5,7 @@ class MisionGrupal(Mision):
         super().__init__(nombre, rango, recompensa)
         self.__miembros_minimos = miembros_minimos
         self.__aventureros_asignados = {}
+        self.__tipo = "Grupal"
     
     @property
     def aventureros_asignados(self):
@@ -13,7 +14,11 @@ class MisionGrupal(Mision):
     @property
     def miembros_minimos(self):
         return self.__miembros_minimos
-
+    
+    @property
+    def tipo(self):
+        return self.__tipo
+    
     @aventureros_asignados.setter
     def aventureros_asignados(self, aventurero):
         if aventurero.id not in self.aventureros_asignados:
@@ -22,11 +27,8 @@ class MisionGrupal(Mision):
             print(f"El aventurero {aventurero.nombre} ya está asignado a la misión.")
 
     def asignar_aventureros(self, aventurero):
-        if len(self.aventureros_asignados) < self.miembros_minimos:
             self.aventureros_asignados = aventurero
             print(f"Aventurero {aventurero.nombre} asignado a la misión.")
-        else:
-            print(f"No se pueden asignar más aventureros a la misión '{self.nombre}'. Miembros mínimos alcanzados.")
     
     def asignar_aventurero(self, aventurero):
         pass
@@ -78,4 +80,4 @@ class MisionGrupal(Mision):
             return True
         
     def __repr__(self):
-        return (f"Nombre: {self.nombre}, Rango: {self.rango}, Recompensa: {self.recompensa}, Miembros Minimos: {self.miembros_minimos}, Completado: {self.completado}")
+        return (f"Nombre: {self.nombre}, Rango: {self.rango}, Recompensa: {self.recompensa}, Miembros Minimos: {self.miembros_minimos}.")

@@ -10,6 +10,11 @@ class Guerrero(Aventurero):
         self.__dinero = dinero
         self.__misiones_completadas = 0
         self.__nombre = nombre
+        self.__clase = "Guerrero"
+    
+    @property
+    def clase(self):
+        return self.__clase
         
     @property
     def misiones_completadas(self):
@@ -75,4 +80,4 @@ class Guerrero(Aventurero):
         return self.__puntos_habilidad + (self.__fuerza)/2
     
     def __repr__(self):
-        return f'Aventurero: {self.nombre}, id: {self.id}, Misiones Completadas: {self.misiones_completadas}.'
+        return f'Aventurero: {self.nombre}, Id: {self.id}, Clase: {self.clase}, Exp: {self.exp}.'

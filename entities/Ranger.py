@@ -11,6 +11,12 @@ class Ranger(Aventurero):
         self.__dinero = dinero
         self.__misiones_completadas = 0
         self.__nombre = nombre
+        self.__clase = "Ranger"
+
+    @property
+    def clase(self):
+        return self.__clase
+
 
     @property
     def nombre(self):
@@ -55,7 +61,7 @@ class Ranger(Aventurero):
 
     @dinero.setter
     def dinero(self, valor):
-        self.dinero = valor
+        self.__dinero = valor
     
     def calcular_rango(self):
         habilidadTotal = self.calcular_habilidad_total()
@@ -78,7 +84,7 @@ class Ranger(Aventurero):
         if self.__mascota != None:
             if self.puntos_habilidad <= 80:
                 return self.__puntos_habilidad + self.__mascota.puntos_habilidad
-        return self.__puntos_habilidad or 0
+        return self.__puntos_habilidad
     
     def __repr__(self):
-        return f'Aventurero: {self.nombre}, id: {self.id}, Puntos de Habilidad: {self.puntos_habilidad}, Exp: {self.exp}, Dinero: {self.dinero}, Mascota: {self.mascota}.'
+        return f'Aventurero: {self.nombre}, Id: {self.id}, Clase: {self.clase}, Exp: {self.exp}.'

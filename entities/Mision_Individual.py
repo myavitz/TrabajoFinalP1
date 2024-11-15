@@ -5,14 +5,20 @@ class MisionIndividual(Mision):
         super().__init__(nombre, rango, recompensa)
         self.__aventurero_asignado = None   
         self.__recompensa = recompensa
+        self.__tipo = "Individual"
 
 
     @property
     def aventurero_asignado(self):
         return self.__aventurero_asignado
+    
     @property
     def recompensa(self):
         return self.__recompensa
+    
+    @property
+    def tipo(self):
+        return self.__tipo
     
     @aventurero_asignado.setter
     def aventurero_asignado(self, value):
@@ -33,8 +39,8 @@ class MisionIndividual(Mision):
         rango_aventurero = self.aventurero_asignado.rango
         if rango_aventurero >= self.rango:
             self.completado = True
-            self.otorgar_recompensas(self.aventurero_asignado)
             print("Misión Realizada con Éxito!")
+            self.otorgar_recompensas(self.aventurero_asignado)
         else:
             self.aventurero_asignado = None
             raise ValueError("El rango del aventurero es insuficiente para realizar la misión.")
@@ -61,7 +67,7 @@ class MisionIndividual(Mision):
         print(f'{aventurero.nombre} ha recibido {self.recompensa} libras de fenix por completar la misión.')
 
     def __repr__(self):
-        return f'Misión: {self.nombre}, Rango: {self.rango}, Recompensa: {self.recompensa}, Completada: {self.completado}'
+        return f'Misión: {self.nombre}, Rango: {self.rango}, Recompensa: {self.recompensa}'
     
     def __eq__(self, value):
         if hasattr(self, "aventurero_asignado") and hasattr(value, "aventurero_asignado"):

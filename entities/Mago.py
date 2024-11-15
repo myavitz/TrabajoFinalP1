@@ -10,6 +10,12 @@ class Mago(Aventurero):
         self.__dinero = dinero
         self.__misiones_completadas = 0
         self.__nombre = nombre
+        self.__clase = "Mago"
+
+    @property
+    def clase(self):
+        return self.__clase
+
 
     @property
     def nombre(self):
@@ -42,7 +48,7 @@ class Mago(Aventurero):
     
     @dinero.setter
     def dinero(self, valor):
-        self.dinero = valor
+        self.__dinero = valor
     
     @rango.setter
     def rango(self, valor):
@@ -72,4 +78,4 @@ class Mago(Aventurero):
         return self.__puntos_habilidad + self.__mana/10
     
     def __repr__(self):
-        return f'Aventurero: {self.nombre}, id: {self.id}, Puntos de Habilidad: {self.puntos_habilidad}, Exp: {self.exp}, Dinero: {self.dinero}, Mana: {self.mana}.'
+        return f'Aventurero: {self.nombre}, Id: {self.id}, Clase: {self.clase}, Exp: {self.exp}.'

@@ -33,6 +33,7 @@ def menu():
         elif opcion == 5:
             a = False
             print("Saliendo del programa...")
+            time.sleep(1)
         else:
             print("Opción no válida. Intenta de nuevo.")
 
@@ -128,20 +129,25 @@ def opcion3():
     time.sleep(1)
     print ("Seleccione el tipo de mision:")
     mision = pedir_entrada("1.Mision Individual\n2.Mision Grupal\nElegir 1 o 2: ", tipo_dato = "int", rango = (1,2))
+    time.sleep(0.1)
     if mision == 1:
         print("Las misiones disponibles son:")
         for key, value in gremio.misiones.items():
             if isinstance(value, MisionIndividual):
-                print(f"{value} ")
+                if not value.completado:
+                    print(f"{value} ")
+                    time.sleep(0.1)
         mision_elegida = pedir_entrada("Elija la mision a completar: ")
         for key, value in gremio.misiones.items():
             if isinstance(value, MisionIndividual):
                 if mision_elegida.upper() == value.nombre.upper():
                     print (f"La mision elegida es: {mision_elegida}.")
+        time.sleep(0.1)
         print("Elija un aventurero para realizar la mision (elija por ID): ")
         for key, value in gremio.aventureros.items():
             if isinstance(value, (Guerrero, Mago, Ranger)):
                 print(f"{value}")
+                time.sleep(0.1)
         aventurero_elegido = pedir_entrada("Seleccione el id del aventurero deseado: ",tipo_dato = "int")
         for key, value in gremio.aventureros.items():
             if value.id == aventurero_elegido:
@@ -160,31 +166,31 @@ def opcion3():
         print(f"Las misiones disponibles son: ")
         for key, value in gremio.misiones.items():
             if isinstance(value, MisionGrupal):
-                print(f"{value}")
+                if not value.completado:
+                    print(f"{value}")
+                    time.sleep(0.1)
         mision_elegida = pedir_entrada("Elija la mision a completar: ")
         for key, value in gremio.misiones.items():
             if isinstance(value, MisionIndividual):
                 if mision_elegida.upper() == value.nombre.upper():
                     print (f"La mision elegida es: {mision_elegida}.")
+        time.sleep(0.1)
         print("Elija un aventurero para realizar la mision (elija por ID): ")
         for key, value in gremio.aventureros.items():
             if isinstance(value, (Guerrero, Mago, Ranger)):
                 print(f"{value}")
+                time.sleep(0.1)
         mision_a_realizar = gremio.misiones[mision_elegida]
         d = True
         while d:
-            if len(mision_a_realizar.aventureros_asignados) < mision_a_realizar.miembros_minimos:
+                
                 aventurero_elegido = pedir_entrada("Seleccione el id del aventurero deseado: ",tipo_dato = "int")
                 aventurero_para_mision = gremio.aventureros[aventurero_elegido]
                 mision_a_realizar.asignar_aventureros(aventurero_para_mision)
-
-            else:
-                d = False
             
-            if len(mision_a_realizar.aventureros_asignados) < mision_a_realizar.miembros_minimos:
                 respuesta = pedir_entrada("¿Registrar otro aventurero? (S/N): ", tipo_dato="str").upper()
-            if respuesta.upper() != 'S':
-                d = False
+                if respuesta.upper() != 'S':
+                    d = False
          
         print("Intentando Mision")
         time.sleep(1)
@@ -214,13 +220,12 @@ def opcion4():
         if opcion == 1:
             # Ordenar por misiones completadas
             ordenado_misiones = dict(sorted(gremio.aventureros.items(), key=lambda item: (-item[1].misiones_completadas, item[1].nombre.lower())))
-            
             top_misiones = list(ordenado_misiones.items())[:10]
     
             # Imprimir los aventureros con índice
             print("Top 5 Aventureros por misiones completadas:")
             for idx, (clave, aventurero) in enumerate(top_misiones, start=1):
-                print(f"{idx}. {aventurero.nombre} - Misiones completadas: {aventurero.misiones_completadas}")
+                print(f"{idx}. {aventurero.nombre} - Clase: {aventurero.clase} - Misiones completadas: {aventurero.misiones_completadas}")
                 time.sleep(0.3)
         elif opcion == 2:
             ordenado_habilidad = dict(sorted(gremio.aventureros.items(), key=lambda item: (-item[1].puntos_habilidad, item[1].nombre.lower())))
@@ -228,7 +233,7 @@ def opcion4():
             if top_10_habilidad:
                 print("Top 10 Aventureros por puntos de habilidad:")
                 for idx, (clave, aventurero) in enumerate(top_10_habilidad, start=1):
-                    print(f"{idx}. {aventurero.nombre} - Puntos de habilidad: {aventurero.puntos_habilidad}")
+                    print(f"{idx}. {aventurero.nombre} - Clase: {aventurero.clase} - Puntos de habilidad: {aventurero.puntos_habilidad}")
                     time.sleep(0.3)
             else:
                 print("No hay aventureros para mostrar.")
@@ -239,16 +244,19 @@ def opcion4():
             if top_5_recompensa:
                 print("Top 5 Misiones por recompensa:")
                 for idx, (clave, mision) in enumerate(top_5_recompensa, start=1):
-                    print(f"{idx}. {mision.nombre} - Recompensa: {mision.recompensa}")
+                    print(f"{idx}. {mision.nombre} - Tipo de misión: {mision.tipo} - Recompensa: {mision.recompensa}")
                     time.sleep(0.3)
             else:
                 print("No hay misiones para mostrar.")
             pass
         elif opcion == 4:
+            print("Saliendo del submenú.")
+            print("\nCargando...")
+            time.sleep(1)
             b = False
-            print("Saliendo del submenú..")
         else:
             print("Opción no válida. Intenta de nuevo.")
+            time.sleep(0.3)
 
 def main():
     try:
@@ -257,26 +265,24 @@ def main():
         print(f"Ocurrió un error inesperado: {e}")
         print("Saliendo del programa.")
 
-if __name__ == "__main__":
-
-    def pruebas():
+def pruebas():
         #Aventureros y Mascotas
         gremio.registrar_aventurero("Marcelo", 12, 1, 45, 888, 23, 54)
         gremio.registrar_aventurero("Marcela", 22, 2, 62, 455, 2665, None, 544)
         mascota1 = Mascota("Winnie", 35)
         gremio.registrar_aventurero("Jhonnie", 34, 3, 47, 211, 9665, None, None, mascota1)
-        gremio.registrar_aventurero("Lucia", 28, 2, 30, 320, 1350, 12, None)
+        gremio.registrar_aventurero("Lucia", 28, 2, 30, 320, 1350, None, 500)
         gremio.registrar_aventurero("Gustavo", 19, 1, 50, 500, 740, 25, 30)
         gremio.registrar_aventurero("Diego", 25, 2, 40, 150, 4700, None, 500)
         gremio.registrar_aventurero("Sofia", 30, 3, 38, 900, 1230, 45, 78, None)
         mascota2 = Mascota("Sombra", 50)
         gremio.registrar_aventurero("Carlos", 33, 3, 55, 270, 890, None, None, mascota2)
         gremio.registrar_aventurero("Ana", 27, 1, 70, 123, 4560, 15, 32)
-        gremio.registrar_aventurero("Luis", 20, 2, 34, 750, 3100, None, 420)
+        gremio.registrar_aventurero("Luis", 20, 2, 34, 750, 0, None, 420)
         gremio.registrar_aventurero("Elena", 24, 1, 65, 520, 2100, 10, 15)
         mascota3 = Mascota("Relámpago", 40)
         gremio.registrar_aventurero("Miguel", 29, 3, 50, 580, 900, None, None, mascota3)
-        gremio.registrar_aventurero("Patricia", 31, 2, 55, 450, 2100, 5, None)
+        gremio.registrar_aventurero("Patricia", 31, 2, 55, 450, 2100, None, 652)
         gremio.registrar_aventurero("Fernando", 26, 1, 60, 610, 950, 18, 20)
         gremio.registrar_aventurero("Alicia", 33, 3, 44, 620, 2700, None, None)  
         mascota4 = Mascota("Neblina", 20)
@@ -317,6 +323,7 @@ if __name__ == "__main__":
         gremio.registrar_mision("Pico del Terror", False, 5, 2750, 4)
         gremio.registrar_mision("Fortaleza Oculta", False, 4, 2200, 3)
         return
-    
+
+if __name__ == "__main__":    
     pruebas()
     main()      
